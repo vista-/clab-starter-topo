@@ -1,0 +1,42 @@
+name: starter-topo
+prefix: ""
+
+topology:
+  nodes:
+    r1:
+      kind: nokia_srlinux
+      image: ghcr.io/nokia/srlinux:24.10
+    r2:
+      kind: arista_ceos
+      image: ceos:4.33.2F
+    r3:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:17.12.01
+    sw1:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol-l2:17.12.01
+      type: l2
+    client1:
+      kind: linux
+      image: ghcr.io/srl-labs/network-multitool:latest
+    client2:
+      kind: linux
+      image: ghcr.io/srl-labs/network-multitool:latest
+    client3:
+      kind: linux
+      image: ghcr.io/srl-labs/network-multitool:latest
+    client4:
+      kind: linux
+      image: ghcr.io/srl-labs/network-multitool:latest
+
+  links:
+    - endpoints: ["r1:ethernet-1/1", "client1:eth1"]
+    - endpoints: ["r2:eth1", "client2:eth1"]
+    - endpoints: ["sw1:Ethernet0/1", "client3:eth1"]
+    - endpoints: ["sw1:Ethernet0/2", "client4:eth1"]
+    - endpoints: ["sw1:Ethernet0/5", "r3:Ethernet0/1"]
+    - endpoints: ["sw1:Ethernet0/6", "r3:Ethernet0/2"]
+    - endpoints: ["r3:Ethernet0/5", "r2:eth2"]
+    - endpoints: ["r3:Ethernet0/6", "r1:ethernet-1/2"]
+    - endpoints: ["r1:ethernet-1/3", "r2:eth3"]
+

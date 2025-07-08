@@ -8,7 +8,7 @@ topology:
       image: ghcr.io/nokia/srlinux:24.10
     r2:
       kind: arista_ceos
-      image: ceos:4.33.2F
+      image: arista_ceos:4.33.2F
     r3:
       kind: cisco_iol
       image: vrnetlab/cisco_iol:17.12.01
